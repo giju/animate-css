@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Animate CSS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
+    </head>
+    <body class=" w3-light-grey" style="padding-bottom:100px">  
+        <div id="app" class="w3-row"> 
+            <div class="w3-padding-32 w3-center"  >
+                <h3 >Animate CSS Animations</h3>
+                <a href="https://daneden.github.io/animate.css/" target="_blank" >Animate css animations in action</a>
+            </div>
+            <div class="w3-row" v-for="anim in animList">
+                <h3 class="w3-center w3-black w3-margin-bottom w3-padding-16 w3-card-4">{{ anim.label }}</h3> 
+                <div class="w3-row">
+                    <div class="w3-col m3 s12 w3-padding"  v-for="item in anim.list">
+                        <div class="w3-center w3-border w3-padding-64 animated w3-white w3-card" 
+                            v-on:mouseover="addClass($event)"  
+                            v-on:animationend="removeClass($event)"
+                            v-bind:data-anim="item.value">
+                            <a v-bind:href="'#'+item.value">{{ item.value }}</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <!-- <div class="w3-padding w3-white w3-center w3-margin-top">Fun</div> -->
+            <div style="position:fixed;bottom:0px;right:0px" class="w3-padding w3-white w3-border">
+                <button v-if="animOnHover" class="w3-round w3-red  w3-button w3-padding-small" 
+                    v-on:click="toggleMode($event)">Disable &quot;Animation on Hover &quot;</button>
+
+                <button v-if="!animOnHover" class="w3-round w3-green  w3-button w3-padding-small" 
+                    v-on:click="toggleMode($event)">Animate on Hover</button>
+
+                <a v-if="animName != ''" href="#" class="w3-round w3-green   w3-button w3-padding-small" 
+                    v-on:click="toggleMode($event)">Show All Animations</a>
+                <div v-if="!animOnHover" class="w3-text-grey w3-padding w3-tiny ">
+                    Click on boxes to get a deep link <br/>  Deeplink can be used to share and discuss animations
+                </div>
+            </div>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="./js/app.js" ></script>
+    </body> 
+</html>
+
